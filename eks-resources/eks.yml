@@ -7,11 +7,11 @@ metadata:
 
 nodeGroups:
   - name: expense
-    instanceType: t3.medium
+    instanceType: ["t3.small", "t3.medium"]
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
-   # spot: true
+    spot: true
     labels: { role: worker }
     tags:
       nodegroup-role: worker
