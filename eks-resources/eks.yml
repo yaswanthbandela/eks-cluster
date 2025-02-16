@@ -11,7 +11,7 @@ nodeGroups:
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
-    spot: true
+    capacityType: SPOT  # Spot instance
     labels: { role: worker }
     tags:
       nodegroup-role: worker
