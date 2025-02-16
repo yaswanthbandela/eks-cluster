@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eks-practice-cluster
+  region: us-east-1
+
+nodeGroups:
+  - name: expense
+    instanceType: t3.medium
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    spot: true
+    labels: { role: worker }
+    tags:
+      nodegroup-role: worker
