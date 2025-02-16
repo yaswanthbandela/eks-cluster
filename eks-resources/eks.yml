@@ -7,11 +7,16 @@ metadata:
 
 nodeGroups:
   - name: expense
-    instanceType: ["t3.small", "t3.medium"]
+    instanceType: "t3.small"
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
-    spot: true
+    instancesDistribution:
+      maxPrice: "0.04"
+      instanceTypes: ["t3.small"]
+      onDemandBaseCapacity: 0
+      onDemandPercentageAboveBaseCapacity: 0
+      spotAllocationStrategy: "lowest-price"
     labels: { role: worker }
     tags:
       nodegroup-role: worker
