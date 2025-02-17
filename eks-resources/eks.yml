@@ -2,21 +2,18 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: eks-practice-cluster
+  name: eks-practice-cluster-1
   region: us-east-1
+  version: "1.32"  # Specify the latest Kubernetes version supported by EKS
 
-nodeGroups:
-  - name: expense
-    instanceType: "t3.small"
+managedNodeGroups:  # Use "managedNodeGroups" instead of "nodeGroups"
+  - name: ng-spot
+    instanceType: t3.small
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
-    instancesDistribution:
-      maxPrice: "0.04"
-      instanceTypes: ["t3.small"]
-      onDemandBaseCapacity: 0
-      onDemandPercentageAboveBaseCapacity: 0
-      spotAllocationStrategy: "lowest-price"
-    labels: { role: worker }
+    spot: true  # Enable Spot instances
+    labels:
+      role: worker
     tags:
       nodegroup-role: worker
