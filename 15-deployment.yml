@@ -1,0 +1,22 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx-deployment
+  namespace: expense
+  labels:
+    name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: app-nginx
+  template:
+    metadata:
+      labels:
+        name: app-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
