@@ -8,7 +8,7 @@ metadata:
 
 managedNodeGroups:  # Use "managedNodeGroups" instead of "nodeGroups"
   - name: ng-spot
-    instanceType: t3.small
+    instanceType: t3.medium
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
