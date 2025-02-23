@@ -27,36 +27,36 @@ spec:
     requests:
       storage: 5Gi
   volumeName: ebs-static
-# ---
-# kind: Pod
-# apiVersion: v1
-# metadata:
-#   name: ebs-static-pod
-#   namespace: expense
-#   labels:
-#     name: ebs-static-pod-label
-# spec:
-#   containers:
-#   - name: ebs-static-container
-#     image: nginx
-#     volumeMounts:
-#     - name: ebs-static-volume
-#       mountPath: /usr/share/nginx/html
-#   volumes:
-#   - name: ebs-static-volume
-#     persistentVolumeClaim:
-#       claimName: ebs-static-claim
-# ---
-# kind: Service
-# apiVersion: v1
-# metadata:
-#   name: ebs-static-service
-#   namespace: expense
-# spec:
-#   selector:
-#     name: ebs-static-pod-label
-#   ports:
-#     - protocol: TCP
-#       port: 80
-#       targetPort: 80
-#   type: LoadBalancer
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: ebs-static-pod
+  namespace: expense
+  labels:
+    name: ebs-static-pod-label
+spec:
+  containers:
+  - name: ebs-static-container
+    image: nginx
+    volumeMounts:
+    - name: ebs-static-volume
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: ebs-static-volume
+    persistentVolumeClaim:
+      claimName: ebs-static-claim
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ebs-static-service
+  namespace: expense
+spec:
+  selector:
+    name: ebs-static-pod-label
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
