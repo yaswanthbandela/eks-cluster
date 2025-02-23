@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: expense-dyanmic-ebs-claim
+spec:
+  storageClassName: expense-ebs
+  resources:
+    requests:
+      storage: 3Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: expense-dynamic-ebs-pod
+  namespace: expense
+  labels:
+    name: expense-dynamic-ebs-pod-label
+spec:
+  containers:
+  - name: expense-dynamic-ebs-container
+    image: nginx
+    volumeMounts:
+    - name: expense-dynamic-ebs-volume
+      mountPath: /usr/share/nginx/html
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1c
+  volumes:
+  - name: expense-dynamic-ebs-volume
+    persistentVolumeClaim:
+      claimName: expense-dyanmic-ebs-claim
