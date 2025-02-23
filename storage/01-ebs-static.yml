@@ -15,18 +15,18 @@ spec:
     volumeAttributes:
       type: gp3
 ---
-# kind: PersistentVolumeClaim
-# apiVersion: v1
-# metadata:
-#   name: ebs-static-claim
-#   namespace: expense
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 5Gi
-#   volumeName: ebs-static
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ebs-static-claim
+  namespace: expense
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: ebs-static
 # ---
 # kind: Pod
 # apiVersion: v1
