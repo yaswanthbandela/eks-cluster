@@ -42,6 +42,8 @@ spec:
     volumeMounts:
     - name: ebs-static-volume
       mountPath: /usr/share/nginx/html
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1c
   volumes:
   - name: ebs-static-volume
     persistentVolumeClaim:
